@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: small;
+}
+
+button {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+
+input {
+    outline: 1px solid black;
+}
+
+input[type="checkbox"] {
+    outline: none;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+#selected {
+    background-color: #04c504;
+}
+
+#important {
+    background-color: red;
+}
