@@ -67,15 +67,15 @@ export function Todo({ date }: Props) {
 						<form onSubmit={handleSubmit} className="mt-4">
 							<div className="flex gap-5 mb-4">
 								<div className="flex items-center">
-									<input type="checkbox" name="tmp" id="1" checked={isSelected} onChange={() => setIsSelected(x => !x)} />
+									<input type="radio" name="tmp" id="1" checked={isSelected} onChange={() => setIsSelected(x => !x)} />
 									<label htmlFor="1">Important</label>
 								</div>
 								<div className="flex items-center">
-									<input type="checkbox" name="tmp" id="2" checked={!isSelected} onChange={() => setIsSelected(x => !x)} />
+									<input type="radio" name="tmp" id="2" checked={!isSelected} onChange={() => setIsSelected(x => !x)} />
 									<label htmlFor="2">Not important</label>
 								</div>
 							</div>
-							<input type="text" ref={inputRef} className="shadow-2xl rounded-md p-2" />
+							<input type="text" ref={inputRef} className="p-2 rounded-md shadow-2xl" />
 						</form>
 					) : <></>
 				}
