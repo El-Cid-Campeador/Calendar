@@ -11,7 +11,7 @@ type Props = {
 
 export default function Calendar({ year, month }: Props) {
 	const begin = useMemo(() => {
-		const x = new Date(`${year}-${month}-1`).getDay();
+		const x = new Date(year, month, 1).getDay();
 
 		if (x === 0) {
 			return 6;
@@ -21,7 +21,7 @@ export default function Calendar({ year, month }: Props) {
 	}, [month, year]);
 
 	const end = useMemo(() => {
-		return new Date(year, month, 0).getDate();
+		return new Date(year, month + 1, 0).getDate();
 	}, [month, year]);
 
 	const { data, isLoading, error, isFetching } = useQuery({
@@ -49,7 +49,7 @@ export default function Calendar({ year, month }: Props) {
 
 	return (
 		<div className="ml-2.5">
-			<h1 className="mt-5 mb-5 ">{months[month - 1]}{" "}{year}</h1>
+			<h1 className="mt-5 mb-5 ">{months[month]}{" "}{year}</h1>
 			<div className="grid grid-cols-7 grid-rows-[repeat(7,minmax(0,1fr))] w-[355px] h-[355px] gap-1 border-[cyan] border-2 p-1 rounded-md">
 				{
                     days.map((day) => {
@@ -62,7 +62,7 @@ export default function Calendar({ year, month }: Props) {
                 }
 				
 				{
-					Array.from({ length: begin  }).map((_, i) => {
+					Array.from({ length: begin }).map((_, i) => {
 						return <div key={i}></div>
 					})
 				}

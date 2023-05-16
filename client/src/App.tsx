@@ -22,16 +22,16 @@ function Home({ year, month, decrement, increment }: PropsHome) {
 }
 
 export default function App() {
-	const [month, setMonth] = useState(new Date().getMonth() + 1);
+	const [month, setMonth] = useState(new Date().getMonth());
 	const [year, setYear] = useState(new Date().getFullYear());
 
 	const end = useMemo(() => {
-		return new Date(year, month, 0).getDate();
+		return new Date(year, month + 1, 0).getDate();
 	}, [month, year]);
 
 	function decrement() {
-		if (month === 1) {
-			setMonth(12);
+		if (month === 0) {
+			setMonth(11);
 			return setYear(y => y - 1);
 		}
 
@@ -40,8 +40,8 @@ export default function App() {
 	}
 
 	function increment() {
-		if (month === 12) {
-			setMonth(1);
+		if (month === 11) {
+			setMonth(0);
 			return setYear(y => y + 1);
 		}
 		
