@@ -24,7 +24,8 @@ export function Todo({ date }: Props) {
 			const data = await GetTodos(date) as { id: string, title: string, is_important: number }[];
 			return data;
 		},
-		refetchOnWindowFocus: false
+		refetchOnWindowFocus: false,
+		networkMode: 'always'
 	});
 
 	const { mutate: addTodo } = useMutation({
@@ -33,7 +34,8 @@ export function Todo({ date }: Props) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		}
+		},
+		networkMode: 'always'
 	});
 
 	const { mutate: deleteTodo } = useMutation({
@@ -42,7 +44,8 @@ export function Todo({ date }: Props) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		}
+		},
+		networkMode: 'always'
 	});
 
 	function handleSubmit(e: FormEvent) {
@@ -75,7 +78,7 @@ export function Todo({ date }: Props) {
 									<label htmlFor="2">Not important</label>
 								</div>
 							</div>
-							<input type="text" ref={inputRef} className="shadow-2xl rounded-md p-2" />
+							<input type="text" ref={inputRef} className="p-2 rounded-md shadow-2xl" />
 						</form>
 					) : <></>
 				}

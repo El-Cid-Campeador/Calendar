@@ -31,7 +31,8 @@ export default function Calendar({ year, month }: Props) {
 			const data = await GetAll() as { date: string, is_important: number }[];
 			return data;
 		},
-		refetchOnWindowFocus: false
+		refetchOnWindowFocus: false,
+		networkMode: 'always'
 	});
 
 	if (isLoading || isFetching) return <h1>Loading...</h1>;

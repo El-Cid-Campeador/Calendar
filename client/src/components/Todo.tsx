@@ -24,7 +24,8 @@ export function Todo({ date }: Props) {
 			const { data } = await axios.get<{ result: { id: string, title: string, is_important: number }[] }>(`http://127.0.0.1:3000/${date}`);
 			return data;
 		},
-		refetchOnWindowFocus: false
+		refetchOnWindowFocus: false,
+		networkMode: 'always'
 	});
 
 	const { mutate: addTodo } = useMutation({
@@ -33,7 +34,8 @@ export function Todo({ date }: Props) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		}
+		},
+		networkMode: 'always'
 	});
 
 	const { mutate: deleteTodo } = useMutation({
@@ -42,7 +44,8 @@ export function Todo({ date }: Props) {
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		}
+		},
+		networkMode: 'always'
 	});
 
 	function handleSubmit(e: FormEvent) {
