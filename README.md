@@ -1,4 +1,4 @@
-First, check Wails prerequisites at: [[https://wails.io/docs/gettingstarted/installation/](%E2%80%B8%5Bhttps://wails.io/docs/gettingstarted/installation/%5D(%60https://wails.io/docs/gettingstarted/installation/%60))][1]
+First, check Wails prerequisites at: [[https://wails.io/docs/gettingstarted/installation/](%E2%80%B8%5Bhttps://wails.io/docs/gettingstarted/installation/%5D(%60https://wails.io/docs/gettingstarted/installation/%60))][website]
 
 Then, launch the project:
 
@@ -9,5 +9,4 @@ $ wails build
 
 The binary executable is generated at: `build/bin`.
 
-
-[1]: https://wails.io/docs/gettingstarted/installation/
+[website]: https://wails.io/docs/gettingstarted/installation/
