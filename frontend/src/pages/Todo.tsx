@@ -1,14 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import { FormEvent, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Item from "./Item";
+import { useNavigate, useParams } from "react-router-dom";
+import Item from "../components/Item";
+import { GetTodos, Post, Delete } from "../../wailsjs/go/main/App";
 
-type Props = {
-	date: string
-}
-
-export function Todo({ date }: Props) {
+export function Todo() {
+	const { date } = useParams();
+	
 	const navigate = useNavigate();
 
 	const [showForm, setShowForm] = useState(false);
@@ -21,31 +19,27 @@ export function Todo({ date }: Props) {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ['todo'],
 		queryFn: async() => {
-			const { data } = await axios.get<{ result: { id: string, title: string, is_important: number }[] }>(`http://127.0.0.1:3000/${date}`);
+			const data = await GetTodos(date as string) as { id: string, title: string, is_important: number }[];
 			return data;
-		},
-		refetchOnWindowFocus: false,
-		networkMode: 'always'
+		}
 	});
 
 	const { mutate: addTodo } = useMutation({
 		mutationFn: async(title: string) => {
-			return await axios.post(`http://127.0.0.1:3000/${date}`, { id: crypto.randomUUID(), title, is_important: Number(isSelected) });
+			return await Post(crypto.randomUUID(), title, date as string, Number(isSelected));
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		},
-		networkMode: 'always'
+		}
 	});
 
 	const { mutate: deleteTodo } = useMutation({
 		mutationFn: async(id: string) => {
-			return await axios.delete(`http://127.0.0.1:3000/${id}`);
+			return await Delete(id);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['todo'], exact: true });
-		},
-		networkMode: 'always'
+		}
 	});
 
 	function handleSubmit(e: FormEvent) {
@@ -84,7 +78,7 @@ export function Todo({ date }: Props) {
 				}
 				<ul>
 					{
-						data?.result.map(item => {
+						data?.map(item => {
 							return (
 								<Item item={item} deleteTodo={deleteTodo} key={item.id} />
 							);

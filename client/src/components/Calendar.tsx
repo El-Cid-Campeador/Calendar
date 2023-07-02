@@ -29,9 +29,7 @@ export default function Calendar({ year, month }: Props) {
 		queryFn:async () => {
 			const { data } = await axios.get<{ result: { date: string, is_important: number }[] }>(`http://127.0.0.1:3000/`);
 			return data;
-		},
-		refetchOnWindowFocus: false,
-		networkMode: 'always'
+		}
 	});
 
 	if (isLoading || isFetching) return <h1>Loading...</h1>;

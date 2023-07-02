@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import { addZero, days, months } from "../constants";
 import { Link } from "react-router-dom";
 import { GetAll } from "../../wailsjs/go/main/App";
-// import { getDay } from "date-fns";
 
 type Props = {
 	month: number,
@@ -30,9 +29,7 @@ export default function Calendar({ year, month }: Props) {
 		queryFn:async () => {
 			const data = await GetAll() as { date: string, is_important: number }[];
 			return data;
-		},
-		refetchOnWindowFocus: false,
-		networkMode: 'always'
+		}
 	});
 
 	if (isLoading || isFetching) return <h1>Loading...</h1>;
