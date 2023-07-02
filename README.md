@@ -1,4 +1,4 @@
-First, check Wails prerequisites at: [https://wails.io/docs/gettingstarted/installation/](`https://wails.io/docs/gettingstarted/installation/`)
+First, check Wails prerequisites at: [[https://wails.io/docs/gettingstarted/installation/](`https://wails.io/docs/gettingstarted/installation/`)]([https://wails.io/docs/gettingstarted/installation/](`https://wails.io/docs/gettingstarted/installation/`))
 
 Then, launch the project:
 
